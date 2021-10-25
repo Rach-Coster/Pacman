@@ -84,9 +84,7 @@ public class SpriteManager : MonoBehaviour
 
             if (i % 2 == 1 && i < 40)
             {
-
-                //dBorder.GetComponent<Animator>().enabled = true;
-
+                dBorder.GetComponent<Animator>().enabled = true;
             }
 
             if (i < 13)

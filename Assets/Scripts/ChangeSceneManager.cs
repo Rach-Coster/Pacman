@@ -18,8 +18,12 @@ public class ChangeSceneManager : MonoBehaviour
     }
 
     public void LoadLevelOne()
+    { 
+        SceneManager.LoadSceneAsync("LevelOne");
+    }
+
+    public void LoadStartScene()
     {
-        Destroy(this); 
-      SceneManager.LoadSceneAsync("LevelOne");
+        SceneManager.LoadSceneAsync("StartScene"); 
     }
 }
