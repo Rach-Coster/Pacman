@@ -95,6 +95,7 @@ public class LevelGenerator : MonoBehaviour
         mazeParts = new List<GameObject>();
         pellets = new List<GameObject>();
 
+        dot.GetComponent<Animator>().enabled = false; 
 
         topLeftParent.transform.parent = gameBoard.transform; 
 

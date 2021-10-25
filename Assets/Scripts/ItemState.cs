@@ -37,20 +37,14 @@ public class ItemState : MonoBehaviour
         pacmanPos = new Vector2();
 
         CreateItems();  
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time < 1)
-        {
-            pellet = gameObject.GetComponent<LevelGenerator>().GetPellets();
-            gameBoard = gameObject.GetComponent<LevelGenerator>().GetGameboard();
-        }
-
-        
+        pellet = gameObject.GetComponent<LevelGenerator>().GetPellets();
+        gameBoard = gameObject.GetComponent<LevelGenerator>().GetGameboard();
+     
         pacmanPos = gameObject.GetComponent<PacmanMovement>().GetPacmanPosition();
 
         if (pacmanPos.x == -10.4f && pacmanPos.y == 1.7f)
