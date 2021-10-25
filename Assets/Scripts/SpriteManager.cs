@@ -48,7 +48,11 @@ public class SpriteManager : MonoBehaviour
         GenerateGhosts();
         CreateBorder();
         GeneratePacman();
-    
+
+        gr.GetComponentInChildren<Canvas>().enabled = false;
+        gg.GetComponentInChildren<Canvas>().enabled = false;
+        gy.GetComponentInChildren<Canvas>().enabled = false;
+        gp.GetComponentInChildren<Canvas>().enabled = false;
 
         addTween(pm.transform, new Vector2(9, -6), 0.25f);
         addTween(gr.transform, new Vector2(9, -6), 0.25f);
