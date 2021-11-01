@@ -454,25 +454,39 @@ public class LevelGenerator : MonoBehaviour
 
         gap = Instantiate(mazeInnerLine);
         gap.transform.position = new Vector2((xOffset + 18.5f), (yOffset + 12.43f));
+        gap.transform.parent = topLeftParent;
+        gap.name = "MazeInnerLine 10 14";
 
         gap = Instantiate(mazeInnerLine);
         gap.transform.position = new Vector2((xOffset + 18.5f), (yOffset + 22.41f));
+        gap.transform.parent = topLeftParent;
+        gap.name = "MazeInnerLine 4 14";
 
         gap = Instantiate(mazeInnerLine);
         gap.transform.position = new Vector2((xOffset + 18.5f), (yOffset - 8.67f));
+        gap.transform.parent = bottomLeftParent;
+        gap.name = "MazeInnerLine 10 14(Clone)";
 
         gap = Instantiate(mazeInnerLine);
         gap.transform.position = new Vector2((xOffset + 18.5f), (yOffset - 18.65f));
+        gap.transform.parent = bottomLeftParent;
+        gap.name = "MazeInnerLine 4 14(Clone)";
 
         gap = Instantiate(mazeInnerLine);
         gap.transform.position = new Vector2((xOffset + 18.5f), (yOffset - 3.71f));
         gap.transform.localScale = new Vector3(1.85f, 1, 1);
-
+        gap.transform.parent = bottomLeftParent;
+        gap.name = "MazeInnerLine 12 13";
 
         gap = Instantiate(dot);
         gap.transform.position = new Vector2((xOffset + 18.5f), (yOffset + 24.9f));
+        gap.transform.parent = topLeftParent; 
+        gap.name = "Dot 5 14";
+
         gap = Instantiate(dot);
         gap.transform.position = new Vector2((xOffset + 18.5f), (yOffset - 21.1f));
+        gap.transform.parent = bottomLeftParent;
+        gap.name = "Dot 5 14(Clone)";
     }
 
     void GenerateGhosts()

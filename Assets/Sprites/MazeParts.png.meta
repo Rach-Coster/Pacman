@@ -1,24 +1,24 @@
 fileFormatVersion: 2
-guid: 6891f8bf77caa004c889c1fac4b13cd9
+guid: b97f2c2e8b78b5244bc4cd86c2dc149b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3443655118505268045
+      213: -9213040124923700054
     second: MazeInnerLine
   - first:
-      213: 5704546547733609266
+      213: 3185457648182676294
     second: MazeOuterLine
   - first:
-      213: 6243101917494116335
+      213: 2205995404797748236
     second: MazeInnerCorner
   - first:
-      213: -1404459717741075876
+      213: 5212421100285821006
     second: MazeOuterCorner
   - first:
-      213: 7670432130435230255
+      213: 3821726139915313816
     second: MazeInnerDouble
   - first:
-      213: -3960120406221555856
+      213: -1585272977292478121
     second: MazeOuterT
   externalObjects: {}
   serializedVersion: 11
@@ -113,18 +113,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 500
-        width: 250
-        height: 250
+        y: 600
+        width: 300
+        height: 300
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bca98c3aeda530d0800000000000000
-      internalID: -3443655118505268045
+      spriteID: aac9084b1d4b42080800000000000000
+      internalID: -9213040124923700054
       vertices: []
       indices: 
       edges: []
@@ -133,19 +133,19 @@ TextureImporter:
       name: MazeOuterLine
       rect:
         serializedVersion: 2
-        x: 250
-        y: 500
-        width: 250
-        height: 250
+        x: 300
+        y: 600
+        width: 300
+        height: 300
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23bb7567cde9a2f40800000000000000
-      internalID: 5704546547733609266
+      spriteID: 64bcafe8ad4053c20800000000000000
+      internalID: 3185457648182676294
       vertices: []
       indices: 
       edges: []
@@ -155,18 +155,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 250
-        width: 250
-        height: 250
+        y: 300
+        width: 300
+        height: 300
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: feffbc8dd14f3a650800000000000000
-      internalID: 6243101917494116335
+      spriteID: c042d1ff1254d9e10800000000000000
+      internalID: 2205995404797748236
       vertices: []
       indices: 
       edges: []
@@ -175,19 +175,19 @@ TextureImporter:
       name: MazeOuterCorner
       rect:
         serializedVersion: 2
-        x: 250
-        y: 250
-        width: 250
-        height: 250
+        x: 300
+        y: 300
+        width: 300
+        height: 300
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c52a2bee35b528ce0800000000000000
-      internalID: -1404459717741075876
+      spriteID: e408946cf5d365840800000000000000
+      internalID: 5212421100285821006
       vertices: []
       indices: 
       edges: []
@@ -198,17 +198,17 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 250
-        height: 250
+        width: 300
+        height: 300
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2aa5580269d27a60800000000000000
-      internalID: 7670432130435230255
+      spriteID: 8922a760daf790530800000000000000
+      internalID: 3821726139915313816
       vertices: []
       indices: 
       edges: []
@@ -217,19 +217,19 @@ TextureImporter:
       name: MazeOuterT
       rect:
         serializedVersion: 2
-        x: 250
+        x: 300
         y: 0
-        width: 250
-        height: 250
+        width: 300
+        height: 300
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 077736fd873da09c0800000000000000
-      internalID: -3960120406221555856
+      spriteID: 759b47450aafff9e0800000000000000
+      internalID: -1585272977292478121
       vertices: []
       indices: 
       edges: []

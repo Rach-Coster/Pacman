@@ -25,7 +25,7 @@ public class PacmanMovement : MonoBehaviour {
         activeTweens = new List<TweenLibrary>();
 
         GeneratePacman();
-        StartCoroutine(TweenPacman());
+     /*   StartCoroutine(TweenPacman());*/
         deltaTime = 0; 
     }
 
@@ -62,7 +62,7 @@ public class PacmanMovement : MonoBehaviour {
     {
         pm = Instantiate(pacman);
         //-17 1.7f
-        pm.transform.position = new Vector2(-17, 1.7f);
+        pm.transform.position = new Vector2(-16.4f, 1.7f);
         pm.AddComponent<AudioSource>(); 
         pm.GetComponent<SpriteRenderer>().sortingOrder = 1; 
     }
