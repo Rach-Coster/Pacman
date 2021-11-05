@@ -7,7 +7,8 @@ public class TileGenerator : MonoBehaviour
     public Transform GridParent;
     public Transform DotParent;
 
-    public List<Vector2> edgeList; 
+    public List<Vector2> edgeList;
+    public List<Vector2> cellList; 
 
     //Change to const numbers
     [SerializeField]
@@ -64,6 +65,7 @@ public class TileGenerator : MonoBehaviour
     void Start()
     {
         edgeList = new List<Vector2>();
+        cellList = new List<Vector2>(); 
 
         xPos = tile.transform.position.x;
         yPos = tile.transform.position.y;
@@ -89,10 +91,12 @@ public class TileGenerator : MonoBehaviour
                 {
                     xPos = -26.45f;
                     cell = Instantiate(tile, new Vector2(xPos += 3, yPos -= 3), Quaternion.identity);
+                    cellList.Add(new Vector2(cell.transform.position.x, cell.transform.position.y)); 
                 }
                 else
                 {
                     cell = Instantiate(tile, new Vector2(xPos += 3, yPos), Quaternion.identity);
+                    cellList.Add(new Vector2(cell.transform.position.x, cell.transform.position.y));
                 }
 
                 cell.name = "Cell " + i + " " + j;
@@ -1666,7 +1670,7 @@ public class TileGenerator : MonoBehaviour
             circle.name = "Dot " + i + " " + j;
         }
 
-        else if (i > 5 && i < 23 && j == 4 || i > 5 && i < 23 && j == 15)
+        else if (i > 5 && i < 24 && j == 4 || i > 5 && i < 24 && j == 15)
         {
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;

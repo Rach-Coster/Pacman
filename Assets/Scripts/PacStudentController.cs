@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class PacStudentController : MonoBehaviour
 {
-    GameObject pacman;
-    string lastInput;
-    string currentInput;
+    private GameObject GameManager;
+    private GameObject pacman;
 
-    public GameObject GameManager;
     private TileGenerator tileGenerator;
+
+    private string lastInput;
+    private string currentInput;
+
+    private bool pacmanMoving;
 
     // Start is called before the first frame update
     void Start()
     {
         lastInput = " ";
         currentInput = " ";
-
+        pacmanMoving = false;
+ 
         GameManager = GameObject.Find("GameManager");
         tileGenerator = GameManager.GetComponent<TileGenerator>();
 
@@ -26,31 +30,86 @@ public class PacStudentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.W))
+        if (!pacmanMoving)
         {
-            lastInput = KeyCode.W.ToString();
-            currentInput = KeyCode.W.ToString();
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                lastInput = KeyCode.W.ToString();
+                currentInput = KeyCode.W.ToString();
+                pacmanMoving = true;
+            }
+
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                lastInput = KeyCode.S.ToString();
+                currentInput = KeyCode.S.ToString();
+                pacmanMoving = true;
+            }
+
+
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                lastInput = KeyCode.A.ToString();
+                currentInput = KeyCode.A.ToString();
+                pacmanMoving = true;
+            }
+
+
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                lastInput = KeyCode.D.ToString();
+                currentInput = KeyCode.D.ToString();
+                pacmanMoving = true;
+            }
         }
 
-        else if (Input.GetKeyDown(KeyCode.S))
+        if (pacmanMoving)
         {
-            lastInput = KeyCode.S.ToString();
-            currentInput = KeyCode.S.ToString();
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                lastInput = KeyCode.W.ToString();
+            }
+
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                lastInput = KeyCode.S.ToString();
+
+            }
+
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                lastInput = KeyCode.A.ToString();
+            }
+
+
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                lastInput = KeyCode.D.ToString();
+            }
         }
 
- 
-        else if (Input.GetKeyDown(KeyCode.A))
+        if (lastInput == "W" && tileGenerator.cellList.Contains(pacman.transform.position) && !tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, pacman.transform.position.y + 3)))
         {
-            lastInput = KeyCode.A.ToString();
-            currentInput = KeyCode.A.ToString();
+            currentInput = lastInput;
+            StopAllCoroutines();
         }
 
-
-        else if (Input.GetKeyDown(KeyCode.D))
+        if (lastInput == "S" && tileGenerator.cellList.Contains(pacman.transform.position) && !tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, pacman.transform.position.y - 3)))
         {
-            lastInput = KeyCode.D.ToString();
-            currentInput = KeyCode.D.ToString();
+            currentInput = lastInput;
+            StopAllCoroutines(); 
+        }
+
+        if (lastInput == "A" && tileGenerator.cellList.Contains(pacman.transform.position) && !tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x - 3, pacman.transform.position.y)))
+        {
+            currentInput = lastInput;
+            StopAllCoroutines();
+        }
+
+        if (lastInput == "D" && tileGenerator.cellList.Contains(pacman.transform.position) && !tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x + 3, pacman.transform.position.y)))
+        {
+            currentInput = lastInput;
+            StopAllCoroutines();
         }
 
 
@@ -64,41 +123,42 @@ public class PacStudentController : MonoBehaviour
             StartCoroutine(LerpDown());
         }
 
+
         else if (currentInput == "A")
         {
-            StartCoroutine(LerpRight());
+            StartCoroutine(LerpLeft());
         }
 
         else if (currentInput == "D")
         {
-            StartCoroutine(LerpLeft());
+            StartCoroutine(LerpRight());
         }
+
 
 
         if (tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, pacman.transform.position.y + 3)))
         {
             StopAllCoroutines();
+            pacmanMoving = false;
         }
 
         else if (tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, pacman.transform.position.y - 3)))
         {
             StopAllCoroutines();
+            pacmanMoving = false;
         }
 
         else if (tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x - 3, pacman.transform.position.y)))
         {
             StopAllCoroutines();
+            pacmanMoving = false;
         }
 
         else if (tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x + 3, pacman.transform.position.y)))
         {
             StopAllCoroutines();
+            pacmanMoving = false;
         }
-
-
-      
-
-     
     }
 
     IEnumerator LerpUp()
@@ -153,36 +213,10 @@ public class PacStudentController : MonoBehaviour
     }
     IEnumerator LerpLeft()
     {
-         float timeElapsed = 0;
-         float lerpDuration = 1; 
-
-         float currentXPosition = pacman.transform.position.x;
-
-
-        while (timeElapsed < lerpDuration)
-        {
-            if (tileGenerator.edgeList.Contains(new Vector2(currentXPosition + 3, pacman.transform.position.y)))
-            {
-                Debug.Log("In coroutine " + currentXPosition);
-                break;  
-            }
-
-            else
-            {
-                timeElapsed += Time.deltaTime;
-
-                pacman.transform.position = Vector2.Lerp(new Vector2(currentXPosition, pacman.transform.position.y), new Vector2(currentXPosition + 3, pacman.transform.position.y), timeElapsed / lerpDuration);
-                yield return null;
-            }
-        }
-    }
-    IEnumerator LerpRight()
-    {
         float timeElapsed = 0;
         float lerpDuration = 1;
 
         float currentXPosition = pacman.transform.position.x;
-
 
         while (timeElapsed < lerpDuration)
         {
@@ -201,12 +235,30 @@ public class PacStudentController : MonoBehaviour
             }
         }
     }
+    IEnumerator LerpRight()
+    {
+        float timeElapsed = 0;
+        float lerpDuration = 1;
 
+        float currentXPosition = pacman.transform.position.x;
 
+        while (timeElapsed < lerpDuration)
+        {
+            if (tileGenerator.edgeList.Contains(new Vector2(currentXPosition + 3, pacman.transform.position.y)))
+            {
+                break;
+            }
 
-    
+            else
+            {
+                timeElapsed += Time.deltaTime;
 
-
+                pacman.transform.position = Vector2.Lerp(new Vector2(currentXPosition, pacman.transform.position.y), new Vector2(currentXPosition + 3, pacman.transform.position.y), timeElapsed / lerpDuration);
+                yield return null;
+            }
+        }
+    }
+   
 }
 
 
