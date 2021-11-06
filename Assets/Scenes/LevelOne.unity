@@ -198,11 +198,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 703621150}
-  - component: {fileID: 703621153}
   - component: {fileID: 703621152}
   - component: {fileID: 703621151}
   - component: {fileID: 703621154}
   - component: {fileID: 703621155}
+  - component: {fileID: 703621153}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -261,29 +261,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703621149}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473a565075a33c84b96a1a5a528b3bf1, type: 3}
+  m_Script: {fileID: 11500000, guid: 490501f026a757d4abcae9d5a0c100ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeInnerCorner: {fileID: 739907545274127398, guid: 57d0d5198909b284f89ecb454b2417ac, type: 3}
-  mazeOuterCorner: {fileID: 2642860971680949060, guid: b9e61c31c63ce904496b7d70c79eb975, type: 3}
-  mazeInnerLine: {fileID: 4546011671363728154, guid: 5b08a9c7b823cf648854f7cf0e62a9e8, type: 3}
-  mazeOuterLine: {fileID: 4526692835651359816, guid: a8dd3385ec552ce40a4525952d9cdc26, type: 3}
-  mazeOuterT: {fileID: 7462285813943614007, guid: 478863349a6e571488b263884a906496, type: 3}
-  mazeInnerDouble: {fileID: 2815453804643453981, guid: c4333a1a148a8c445a3e83fd2af58e7a, type: 3}
-  pellet: {fileID: 158220887811278501, guid: 9b9939ef65509a64eb6b7522680b96b1, type: 3}
-  dot: {fileID: 7618255304813386191, guid: 204aec86e46587d479a7752d7ec1e200, type: 3}
-  ghostYellow: {fileID: 8280768687879440350, guid: 6e78f40e1ad51a4478f269bbf75a7394, type: 3}
-  ghostGreen: {fileID: 5422221398447290517, guid: 92b64e131870ae64d8c72385fde7704a, type: 3}
-  ghostRed: {fileID: 6577510358862218518, guid: 6b45a853b36348f45b1f9f06b5bf0498, type: 3}
-  ghostPurple: {fileID: 3394558433959623113, guid: eeda75bd781d4a643a284cfed0c27de2, type: 3}
-  gameBoard: {fileID: 1565946241}
-  topRightParent: {fileID: 1613251689}
-  topLeftParent: {fileID: 722258860}
-  bottomLeftParent: {fileID: 716140642}
-  bottomRightParent: {fileID: 732741057}
-  audioClip: {fileID: 8300000, guid: fa981c1476dc27145a36044605dcdd41, type: 3}
+  cherryPrefab: {fileID: 6533342779144786658, guid: bfe416a06e61d7f438208b33bd57bcea, type: 3}
 --- !u!114 &703621154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +294,7 @@ MonoBehaviour:
   GridParent: {fileID: 903366475}
   DotParent: {fileID: 1568054130}
   edgeList: []
+  cellList: []
   width: 20
   height: 30
   tile: {fileID: 5000200386850807815, guid: f47ac30cc8fc0584aaca7b98717b5a2d, type: 3}
