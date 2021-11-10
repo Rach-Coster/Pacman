@@ -8,7 +8,10 @@ public class TileGenerator : MonoBehaviour
     public Transform DotParent;
 
     public List<Vector2> edgeList;
-    public List<Vector2> cellList; 
+    public List<Vector2> cellList;
+    public List<Vector2> cellListEstimate;
+    public List<Vector2> dotList;
+    public List<Vector2> pelletList; 
 
     //Change to const numbers
     [SerializeField]
@@ -65,7 +68,10 @@ public class TileGenerator : MonoBehaviour
     void Start()
     {
         edgeList = new List<Vector2>();
-        cellList = new List<Vector2>(); 
+        cellList = new List<Vector2>();
+        cellListEstimate = new List<Vector2>(); 
+        dotList = new List<Vector2>();
+        pelletList = new List<Vector2>(); 
 
         xPos = tile.transform.position.x;
         yPos = tile.transform.position.y;
@@ -91,12 +97,14 @@ public class TileGenerator : MonoBehaviour
                 {
                     xPos = -26.45f;
                     cell = Instantiate(tile, new Vector2(xPos += 3, yPos -= 3), Quaternion.identity);
-                    cellList.Add(new Vector2(cell.transform.position.x, cell.transform.position.y)); 
+                    cellList.Add(new Vector2(cell.transform.position.x, cell.transform.position.y));
+                    cellListEstimate.Add(new Vector2(Mathf.Round(cell.transform.position.x), Mathf.Round(cell.transform.position.y)));
                 }
                 else
                 {
                     cell = Instantiate(tile, new Vector2(xPos += 3, yPos), Quaternion.identity);
                     cellList.Add(new Vector2(cell.transform.position.x, cell.transform.position.y));
+                    cellListEstimate.Add(new Vector2(Mathf.Round(cell.transform.position.x), Mathf.Round(cell.transform.position.y)));
                 }
 
                 cell.name = "Cell " + i + " " + j;
@@ -1618,7 +1626,8 @@ public class TileGenerator : MonoBehaviour
         {
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform; 
-            circle.name = "Dot " + i + " " + j; 
+            circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
         else if (i > 1 && i < 5 && j == 8 || i > 1 && i < 5 && j == 11 || i > 24 && i < 28 && j == 8 || i > 24 && i < 28 && j == 11)
@@ -1626,6 +1635,7 @@ public class TileGenerator : MonoBehaviour
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
             circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
         else if (i == 1 && j > 10 && j < 19 || i == 28 && j > 10 && j < 19)
@@ -1633,6 +1643,7 @@ public class TileGenerator : MonoBehaviour
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
             circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
         else if (i > 1 && i < 5 && j == 4 || i > 1 && i < 5 && j == 15 || i > 24 && i < 28 && j == 4 || i > 24 && i < 28 && j == 15)
@@ -1640,6 +1651,7 @@ public class TileGenerator : MonoBehaviour
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
             circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
         else if (i == 2 && j == 1 || i == 2 && j == 18)
@@ -1647,6 +1659,7 @@ public class TileGenerator : MonoBehaviour
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
             circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
         else if(i > 3 && i < 9 && j == 1 || i > 3 && i < 9 && j == 18 || i > 20 && i < 27 && j == 1 || i > 20 && i < 27 && j == 18)
@@ -1654,6 +1667,7 @@ public class TileGenerator : MonoBehaviour
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
             circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
         else if(i == 5 && j > 1 && j < 18 || i == 24 && j > 1 && j < 18)
@@ -1661,6 +1675,7 @@ public class TileGenerator : MonoBehaviour
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
             circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
         else if (i > 5 && i < 9 && j == 7 || i > 5 && i < 9 && j == 12 || i > 20 && i < 24 && j == 7 || i > 20 && i < 24 && j == 12)
@@ -1668,6 +1683,7 @@ public class TileGenerator : MonoBehaviour
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
             circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
         else if (i > 5 && i < 24 && j == 4 || i > 5 && i < 24 && j == 15)
@@ -1675,6 +1691,7 @@ public class TileGenerator : MonoBehaviour
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
             circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
         else if (i == 8 && j > 1 && j < 4 || i == 8 && j > 15 && j < 18 || i == 21 && j > 1 && j < 4 || i == 21 && j > 15 && j < 18)
@@ -1682,6 +1699,7 @@ public class TileGenerator : MonoBehaviour
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
             circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
         else if (i > 7 && i < 11 && j == 8 || i > 7 && i < 11 && j == 11 || i > 18 && i < 22 && j == 8 || i > 18 && i < 22 && j == 11)
@@ -1689,6 +1707,7 @@ public class TileGenerator : MonoBehaviour
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
             circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
         else if (i == 11 && j > 6 && j < 13 || i == 18 && j > 6 && j < 13)
@@ -1696,6 +1715,7 @@ public class TileGenerator : MonoBehaviour
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
             circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
         else if (i == 28 && j > 0 && j < 9)
@@ -1703,9 +1723,8 @@ public class TileGenerator : MonoBehaviour
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
             circle.name = "Dot " + i + " " + j;
+            dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
-
-
     }
     void GeneratePellets(int i, int j)
     {
@@ -1714,6 +1733,7 @@ public class TileGenerator : MonoBehaviour
         if (i == 3 && j == 1 || i == 3 && j == 18 || i == 27 && j == 1 || i == 27 && j == 18)
         {
             Instantiate(pellet, new Vector2(cellPosition.x, cellPosition.y + 0.01f), Quaternion.identity);
+            pelletList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
     }
 

@@ -1,30 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PacStudentController : MonoBehaviour
 {
     private GameObject GameManager;
     private GameObject pacman;
 
+    public AudioClip[] audioClips;
+
+    private AudioSource audioSource;
     private TileGenerator tileGenerator;
+
 
     private string lastInput;
     private string currentInput;
 
     private bool pacmanMoving;
 
+ 
+
     // Start is called before the first frame update
     void Start()
     {
-        lastInput = " ";
-        currentInput = " ";
-        pacmanMoving = false;
- 
         GameManager = GameObject.Find("GameManager");
         tileGenerator = GameManager.GetComponent<TileGenerator>();
 
+
         pacman = GameObject.Find("PacmanMouthOpen(Clone)");
+     
+
+        audioSource = pacman.GetComponent<AudioSource>();
+
+
+        lastInput = " ";
+        currentInput = " ";
+        pacmanMoving = false;
+
     }
 
     // Update is called once per frame
@@ -61,6 +74,8 @@ public class PacStudentController : MonoBehaviour
                 currentInput = KeyCode.D.ToString();
                 pacmanMoving = true;
             }
+
+            pacman.GetComponent<Animator>().StartPlayback();
         }
 
         if (pacmanMoving)
@@ -86,6 +101,8 @@ public class PacStudentController : MonoBehaviour
             {
                 lastInput = KeyCode.D.ToString();
             }
+
+            pacman.GetComponent<Animator>().StopPlayback();
         }
 
         if (lastInput == "W" && tileGenerator.cellList.Contains(pacman.transform.position) && !tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, pacman.transform.position.y + 3)))
@@ -135,7 +152,6 @@ public class PacStudentController : MonoBehaviour
         }
 
 
-
         if (tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, pacman.transform.position.y + 3)))
         {
             StopAllCoroutines();
@@ -159,6 +175,31 @@ public class PacStudentController : MonoBehaviour
             StopAllCoroutines();
             pacmanMoving = false;
         }
+
+        if (tileGenerator.dotList.Contains(new Vector2(Mathf.Round(pacman.transform.position.x), Mathf.Round(pacman.transform.position.y))) && !audioSource.isPlaying && pacmanMoving)
+        {
+
+            audioSource.clip = audioClips[0];
+            audioSource.enabled = true;
+            audioSource.Play();
+
+        }
+
+        else if(tileGenerator.pelletList.Contains(new Vector2(Mathf.Round(pacman.transform.position.x), Mathf.Round(pacman.transform.position.y))) && !audioSource.isPlaying && pacmanMoving)
+        {
+            audioSource.clip = audioClips[1];
+            audioSource.enabled = true;
+            audioSource.Play();
+
+        }
+
+        else if (tileGenerator.cellListEstimate.Contains(new Vector2(Mathf.Round(pacman.transform.position.x), Mathf.Round(pacman.transform.position.y))) && !audioSource.isPlaying && pacmanMoving)
+        {
+            audioSource.clip = audioClips[2];
+            audioSource.enabled = true;
+            audioSource.Play();
+        }
+
     }
 
     IEnumerator LerpUp()
@@ -173,7 +214,6 @@ public class PacStudentController : MonoBehaviour
         {
             if (tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, currentYPosition + 3)))
             {
-                Debug.Log("In coroutine " + currentYPosition);
                 break;
             }
 
@@ -198,7 +238,6 @@ public class PacStudentController : MonoBehaviour
         {
             if (tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, currentYPosition - 3)))
             {
-                Debug.Log("In coroutine " + currentYPosition);
                 break;
             }
 
@@ -222,7 +261,6 @@ public class PacStudentController : MonoBehaviour
         {
             if (tileGenerator.edgeList.Contains(new Vector2(currentXPosition - 3, pacman.transform.position.y)))
             {
-                Debug.Log("In coroutine " + currentXPosition);
                 break;
             }
 
