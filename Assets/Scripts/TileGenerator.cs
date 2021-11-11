@@ -7,11 +7,15 @@ public class TileGenerator : MonoBehaviour
     public Transform GridParent;
     public Transform DotParent;
 
+<<<<<<< HEAD
     public List<Vector2> edgeList;
     public List<Vector2> cellList;
     public List<Vector2> cellListEstimate;
     public List<Vector2> dotList;
     public List<Vector2> pelletList; 
+=======
+    public List<Vector2> edgeList; 
+>>>>>>> parent of ee38052... Pacman now moves around board without issue
 
     //Change to const numbers
     [SerializeField]
@@ -68,10 +72,13 @@ public class TileGenerator : MonoBehaviour
     void Start()
     {
         edgeList = new List<Vector2>();
+<<<<<<< HEAD
         cellList = new List<Vector2>();
         cellListEstimate = new List<Vector2>(); 
         dotList = new List<Vector2>();
         pelletList = new List<Vector2>(); 
+=======
+>>>>>>> parent of ee38052... Pacman now moves around board without issue
 
         xPos = tile.transform.position.x;
         yPos = tile.transform.position.y;
@@ -97,14 +104,20 @@ public class TileGenerator : MonoBehaviour
                 {
                     xPos = -26.45f;
                     cell = Instantiate(tile, new Vector2(xPos += 3, yPos -= 3), Quaternion.identity);
+<<<<<<< HEAD
                     cellList.Add(new Vector2(cell.transform.position.x, cell.transform.position.y));
                     cellListEstimate.Add(new Vector2(Mathf.Round(cell.transform.position.x), Mathf.Round(cell.transform.position.y)));
+=======
+>>>>>>> parent of ee38052... Pacman now moves around board without issue
                 }
                 else
                 {
                     cell = Instantiate(tile, new Vector2(xPos += 3, yPos), Quaternion.identity);
+<<<<<<< HEAD
                     cellList.Add(new Vector2(cell.transform.position.x, cell.transform.position.y));
                     cellListEstimate.Add(new Vector2(Mathf.Round(cell.transform.position.x), Mathf.Round(cell.transform.position.y)));
+=======
+>>>>>>> parent of ee38052... Pacman now moves around board without issue
                 }
 
                 cell.name = "Cell " + i + " " + j;
@@ -1686,7 +1699,7 @@ public class TileGenerator : MonoBehaviour
             dotList.Add(new Vector2(Mathf.Round(cellPosition.x), Mathf.Round(cellPosition.y)));
         }
 
-        else if (i > 5 && i < 24 && j == 4 || i > 5 && i < 24 && j == 15)
+        else if (i > 5 && i < 23 && j == 4 || i > 5 && i < 23 && j == 15)
         {
             circle = Instantiate(dot, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity);
             circle.transform.parent = DotParent.transform;
