@@ -5,11 +5,14 @@ using UnityEditor;
 
 public class PacStudentController : MonoBehaviour
 {
-    GameObject pacman;
-    string lastInput;
-    string currentInput;
+    [SerializeField]
+    ParticleSystem pacmanParticleEffect;
 
-<<<<<<< HEAD
+    private ParticleSystem pacmanParticles; 
+
+    private GameObject GameManager;
+    private GameObject pacman;
+
     public AudioClip[] audioClips;
 
     private AudioSource audioSource;
@@ -20,31 +23,22 @@ public class PacStudentController : MonoBehaviour
     private string currentInput;
 
     private bool pacmanMoving;
-
  
 
     // Start is called before the first frame update
     void Start()
     {
-=======
-    public GameObject GameManager;
-    private TileGenerator tileGenerator;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        lastInput = " ";
-        currentInput = " ";
-
->>>>>>> parent of ee38052... Pacman now moves around board without issue
         GameManager = GameObject.Find("GameManager");
         tileGenerator = GameManager.GetComponent<TileGenerator>();
 
 
         pacman = GameObject.Find("PacmanMouthOpen(Clone)");
-     
+
 
         audioSource = pacman.GetComponent<AudioSource>();
+
+        pacmanParticles = Instantiate(pacmanParticleEffect, new Vector2(pacman.transform.position.x, pacman.transform.position.y - 1), Quaternion.identity);
+        pacmanParticles.Pause(); 
 
 
         lastInput = " ";
@@ -56,20 +50,24 @@ public class PacStudentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
         if (!pacmanMoving)
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
                 lastInput = KeyCode.W.ToString();
                 currentInput = KeyCode.W.ToString();
+                pacman.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                pacman.transform.localScale = new Vector3(1, 1, 1);
                 pacmanMoving = true;
+
             }
 
             else if (Input.GetKeyDown(KeyCode.S))
             {
                 lastInput = KeyCode.S.ToString();
                 currentInput = KeyCode.S.ToString();
+                pacman.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+                pacman.transform.localScale = new Vector3(1, 1, 1);
                 pacmanMoving = true;
             }
 
@@ -78,6 +76,8 @@ public class PacStudentController : MonoBehaviour
             {
                 lastInput = KeyCode.A.ToString();
                 currentInput = KeyCode.A.ToString();
+                pacman.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                pacman.transform.localScale = new Vector3(1, -1, 1); 
                 pacmanMoving = true;
             }
 
@@ -86,17 +86,18 @@ public class PacStudentController : MonoBehaviour
             {
                 lastInput = KeyCode.D.ToString();
                 currentInput = KeyCode.D.ToString();
+                pacman.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                pacman.transform.localScale = new Vector3(1, 1, 1);
                 pacmanMoving = true;
             }
 
+            pacmanParticles.Pause();
+            pacmanParticles.Clear(); 
             pacman.GetComponent<Animator>().StartPlayback();
         }
-=======
->>>>>>> parent of ee38052... Pacman now moves around board without issue
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (pacmanMoving)
         {
-<<<<<<< HEAD
             if (Input.GetKeyDown(KeyCode.W))
             {
                 lastInput = KeyCode.W.ToString();
@@ -119,76 +120,101 @@ public class PacStudentController : MonoBehaviour
                 lastInput = KeyCode.D.ToString();
             }
 
-            pacman.GetComponent<Animator>().StopPlayback();
-=======
-            lastInput = KeyCode.W.ToString();
-            currentInput = KeyCode.W.ToString();
->>>>>>> parent of ee38052... Pacman now moves around board without issue
+   
+            pacman.GetComponent<Animator>().StopPlayback(); 
         }
 
-        else if (Input.GetKeyDown(KeyCode.S))
+        if (lastInput == "W" && tileGenerator.cellList.Contains(pacman.transform.position) && !tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, pacman.transform.position.y + 3)))
         {
-            lastInput = KeyCode.S.ToString();
-            currentInput = KeyCode.S.ToString();
+            currentInput = lastInput;
+            pacman.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+            pacman.transform.localScale = new Vector3(1, 1, 1);
+            StopAllCoroutines();
         }
 
- 
-        else if (Input.GetKeyDown(KeyCode.A))
+        if (lastInput == "S" && tileGenerator.cellList.Contains(pacman.transform.position) && !tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, pacman.transform.position.y - 3)))
         {
-            lastInput = KeyCode.A.ToString();
-            currentInput = KeyCode.A.ToString();
+            currentInput = lastInput;
+            pacman.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+            pacman.transform.localScale = new Vector3(1, 1, 1);
+            StopAllCoroutines();
         }
 
-
-        else if (Input.GetKeyDown(KeyCode.D))
+        if (lastInput == "A" && tileGenerator.cellList.Contains(pacman.transform.position) && !tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x - 3, pacman.transform.position.y)))
         {
-            lastInput = KeyCode.D.ToString();
-            currentInput = KeyCode.D.ToString();
+            currentInput = lastInput;
+            pacman.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+            pacman.transform.localScale = new Vector3(1, -1, 1);
+
+            StopAllCoroutines();
+        }
+
+        if (lastInput == "D" && tileGenerator.cellList.Contains(pacman.transform.position) && !tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x + 3, pacman.transform.position.y)))
+        {
+            currentInput = lastInput;
+            pacman.transform.rotation = Quaternion.Euler(new Vector3 (0, 0, 0));
+            pacman.transform.localScale = new Vector3(1, 1, 1);
+            StopAllCoroutines();
         }
 
 
         if (currentInput == "W")
         {
+            pacmanParticles.Play();
+            pacmanParticles.transform.position = new Vector2(pacman.transform.position.x, pacman.transform.position.y - 2);
+
             StartCoroutine(LerpUp());
         }
 
         else if (currentInput == "S")
         {
+            pacmanParticles.Play();
+            pacmanParticles.transform.position = new Vector2(pacman.transform.position.x, pacman.transform.position.y + 2);
+
             StartCoroutine(LerpDown());
         }
 
         else if (currentInput == "A")
         {
-            StartCoroutine(LerpRight());
+            pacmanParticles.Play();
+            pacmanParticles.transform.position = new Vector2(pacman.transform.position.x, pacman.transform.position.y - 1);
+
+            StartCoroutine(LerpLeft());
         }
 
         else if (currentInput == "D")
         {
-            StartCoroutine(LerpLeft());
+            pacmanParticles.Play();
+            pacmanParticles.transform.position = new Vector2(pacman.transform.position.x, pacman.transform.position.y - 1);
+
+            StartCoroutine(LerpRight());
         }
 
 
         if (tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, pacman.transform.position.y + 3)))
         {
             StopAllCoroutines();
+            pacmanMoving = false;
         }
 
         else if (tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, pacman.transform.position.y - 3)))
         {
             StopAllCoroutines();
+            pacmanMoving = false;
         }
 
         else if (tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x - 3, pacman.transform.position.y)))
         {
             StopAllCoroutines();
+            pacmanMoving = false;
         }
 
         else if (tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x + 3, pacman.transform.position.y)))
         {
             StopAllCoroutines();
+            pacmanMoving = false;
         }
 
-<<<<<<< HEAD
         if (tileGenerator.dotList.Contains(new Vector2(Mathf.Round(pacman.transform.position.x), Mathf.Round(pacman.transform.position.y))) && !audioSource.isPlaying && pacmanMoving)
         {
 
@@ -198,7 +224,7 @@ public class PacStudentController : MonoBehaviour
 
         }
 
-        else if(tileGenerator.pelletList.Contains(new Vector2(Mathf.Round(pacman.transform.position.x), Mathf.Round(pacman.transform.position.y))) && !audioSource.isPlaying && pacmanMoving)
+        else if (tileGenerator.pelletList.Contains(new Vector2(Mathf.Round(pacman.transform.position.x), Mathf.Round(pacman.transform.position.y))) && !audioSource.isPlaying && pacmanMoving)
         {
             audioSource.clip = audioClips[1];
             audioSource.enabled = true;
@@ -213,12 +239,6 @@ public class PacStudentController : MonoBehaviour
             audioSource.Play();
         }
 
-=======
-
-      
-
-     
->>>>>>> parent of ee38052... Pacman now moves around board without issue
     }
 
     IEnumerator LerpUp()
@@ -271,46 +291,15 @@ public class PacStudentController : MonoBehaviour
     }
     IEnumerator LerpLeft()
     {
-         float timeElapsed = 0;
-         float lerpDuration = 1; 
-
-         float currentXPosition = pacman.transform.position.x;
-
-
-        while (timeElapsed < lerpDuration)
-        {
-            if (tileGenerator.edgeList.Contains(new Vector2(currentXPosition + 3, pacman.transform.position.y)))
-            {
-<<<<<<< HEAD
-                break;
-=======
-                Debug.Log("In coroutine " + currentXPosition);
-                break;  
->>>>>>> parent of ee38052... Pacman now moves around board without issue
-            }
-
-            else
-            {
-                timeElapsed += Time.deltaTime;
-
-                pacman.transform.position = Vector2.Lerp(new Vector2(currentXPosition, pacman.transform.position.y), new Vector2(currentXPosition + 3, pacman.transform.position.y), timeElapsed / lerpDuration);
-                yield return null;
-            }
-        }
-    }
-    IEnumerator LerpRight()
-    {
         float timeElapsed = 0;
         float lerpDuration = 1;
 
         float currentXPosition = pacman.transform.position.x;
 
-
         while (timeElapsed < lerpDuration)
         {
             if (tileGenerator.edgeList.Contains(new Vector2(currentXPosition - 3, pacman.transform.position.y)))
             {
-                Debug.Log("In coroutine " + currentXPosition);
                 break;
             }
 
@@ -323,11 +312,28 @@ public class PacStudentController : MonoBehaviour
             }
         }
     }
+    IEnumerator LerpRight()
+    {
+        float timeElapsed = 0;
+        float lerpDuration = 1;
 
+        float currentXPosition = pacman.transform.position.x;
 
+        while (timeElapsed < lerpDuration)
+        {
+            if (tileGenerator.edgeList.Contains(new Vector2(currentXPosition + 3, pacman.transform.position.y)))
+            {
+                break;
+            }
+            else
+            {
+                timeElapsed += Time.deltaTime;
 
-    
-
+                pacman.transform.position = Vector2.Lerp(new Vector2(currentXPosition, pacman.transform.position.y), new Vector2(currentXPosition + 3, pacman.transform.position.y), timeElapsed / lerpDuration);
+                yield return null;
+            }
+        }
+    }
 
 }
 
