@@ -29,7 +29,7 @@ public class CherryController : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-
+        //Cherry spawns once every 10 seconds 
         if (Mathf.Round(Time.time) % 10 == 0 && !cherryMade)
         {
             Vector2 cherryPos = RandomCherryPosition();
@@ -42,6 +42,7 @@ public class CherryController : MonoBehaviour
 
         if (cherryMade)
         {
+            //Delete cherry at specific offsets depending on position
             if (cherryPosition >= 0 && cherryPosition < 3 && cherryInstance.transform.position.y < -50 || 
                 cherryPosition == 3 && cherryInstance.transform.position.x > 66 ||
                 cherryPosition == 4 && cherryInstance.transform.position.x < -66 ||
@@ -218,6 +219,7 @@ public class CherryController : MonoBehaviour
 
     int CherryMovement(Vector2 cherryPos)
     {
+        //Specific positions for cherries with offsets
         float leftHandSide = -23.45f;
         float rightHandSide = 33.55f;
 

@@ -28,6 +28,7 @@ public class PacStudentController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Getting tile lists for specific checks 
         GameManager = GameObject.Find("GameManager");
         tileGenerator = GameManager.GetComponent<TileGenerator>();
 
@@ -37,6 +38,7 @@ public class PacStudentController : MonoBehaviour
 
         audioSource = pacman.GetComponent<AudioSource>();
 
+        //Particle effects for pacman while moving
         pacmanParticles = Instantiate(pacmanParticleEffect, new Vector2(pacman.transform.position.x, pacman.transform.position.y - 1), Quaternion.identity);
         pacmanParticles.Pause(); 
 
@@ -50,6 +52,7 @@ public class PacStudentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Checking if pacman is moving
         if (!pacmanMoving)
         {
             if (Input.GetKeyDown(KeyCode.W))
@@ -96,6 +99,7 @@ public class PacStudentController : MonoBehaviour
             pacman.GetComponent<Animator>().StartPlayback();
         }
 
+        //Checking when pacman is moving
         if (pacmanMoving)
         {
             if (Input.GetKeyDown(KeyCode.W))
@@ -120,10 +124,12 @@ public class PacStudentController : MonoBehaviour
                 lastInput = KeyCode.D.ToString();
             }
 
-   
+            
+            //Stopping the pacman animator so it is on the half-open sprite
             pacman.GetComponent<Animator>().StopPlayback(); 
         }
 
+        //Checking if pacman has hit a wall
         if (lastInput == "W" && tileGenerator.cellList.Contains(pacman.transform.position) && !tileGenerator.edgeList.Contains(new Vector2(pacman.transform.position.x, pacman.transform.position.y + 3)))
         {
             currentInput = lastInput;
@@ -157,7 +163,8 @@ public class PacStudentController : MonoBehaviour
             StopAllCoroutines();
         }
 
-
+        
+        //Coroutines that correpsond with movement
         if (currentInput == "W")
         {
             pacmanParticles.Play();
