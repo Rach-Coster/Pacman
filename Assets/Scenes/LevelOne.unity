@@ -198,12 +198,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 703621150}
-<<<<<<< HEAD
-  - component: {fileID: 703621152}
-  - component: {fileID: 703621151}
-=======
-  - component: {fileID: 703621153}
->>>>>>> feature/pacmanMovement
   - component: {fileID: 703621154}
   - component: {fileID: 703621155}
   - component: {fileID: 703621153}
@@ -269,12 +263,9 @@ MonoBehaviour:
   DotParent: {fileID: 1568054130}
   edgeList: []
   cellList: []
-<<<<<<< HEAD
-=======
   cellListEstimate: []
   dotList: []
   pelletList: []
->>>>>>> feature/pacmanMovement
   width: 20
   height: 30
   tile: {fileID: 5000200386850807815, guid: f47ac30cc8fc0584aaca7b98717b5a2d, type: 3}
