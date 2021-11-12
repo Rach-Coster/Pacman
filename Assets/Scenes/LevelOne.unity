@@ -198,8 +198,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 703621150}
+<<<<<<< HEAD
   - component: {fileID: 703621152}
   - component: {fileID: 703621151}
+=======
+  - component: {fileID: 703621153}
+>>>>>>> feature/pacmanMovement
   - component: {fileID: 703621154}
   - component: {fileID: 703621155}
   - component: {fileID: 703621153}
@@ -224,36 +228,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &703621151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703621149}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78f0e9f6d0c83c349baf25091c41ceaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cherry: {fileID: 6533342779144786658, guid: bfe416a06e61d7f438208b33bd57bcea, type: 3}
-  audioClip:
-  - {fileID: 8300000, guid: 55ad507f7703b8943b6653213c005b35, type: 3}
-  - {fileID: 8300000, guid: 07c4ac526d38cff4a82a4531cd0dd9d3, type: 3}
---- !u!114 &703621152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703621149}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b21cb752f8b24b49923fa267b412df8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: d96a086768d9f14479a26fc77cc7c6c8, type: 3}
-  pacman: {fileID: 1448931699403284011, guid: 3484b838a85a71e4e9ee849136dad98f, type: 3}
 --- !u!114 &703621153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +269,12 @@ MonoBehaviour:
   DotParent: {fileID: 1568054130}
   edgeList: []
   cellList: []
+<<<<<<< HEAD
+=======
+  cellListEstimate: []
+  dotList: []
+  pelletList: []
+>>>>>>> feature/pacmanMovement
   width: 20
   height: 30
   tile: {fileID: 5000200386850807815, guid: f47ac30cc8fc0584aaca7b98717b5a2d, type: 3}
@@ -306,7 +286,7 @@ MonoBehaviour:
   mazeInnerDouble: {fileID: 2815453804643453981, guid: c4333a1a148a8c445a3e83fd2af58e7a, type: 3}
   dot: {fileID: 7618255304813386191, guid: 204aec86e46587d479a7752d7ec1e200, type: 3}
   pellet: {fileID: 158220887811278501, guid: 9b9939ef65509a64eb6b7522680b96b1, type: 3}
-  pacman: {fileID: 1448931699403284011, guid: 3484b838a85a71e4e9ee849136dad98f, type: 3}
+  pacman: {fileID: 7238250342370697508, guid: 3484b838a85a71e4e9ee849136dad98f, type: 3}
   redGhost: {fileID: 6577510358862218518, guid: 6b45a853b36348f45b1f9f06b5bf0498, type: 3}
   yellowGhost: {fileID: 8280768687879440350, guid: 6e78f40e1ad51a4478f269bbf75a7394, type: 3}
   purpleGhost: {fileID: 3394558433959623113, guid: eeda75bd781d4a643a284cfed0c27de2, type: 3}
