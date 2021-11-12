@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dot: {fileID: 7618255304813386191, guid: 204aec86e46587d479a7752d7ec1e200, type: 3}
-  pacman: {fileID: 1448931699403284011, guid: 3484b838a85a71e4e9ee849136dad98f, type: 3}
+  pacman: {fileID: 7238250342370697508, guid: 3484b838a85a71e4e9ee849136dad98f, type: 3}
   ghostRed: {fileID: 6577510358862218518, guid: 6b45a853b36348f45b1f9f06b5bf0498, type: 3}
   ghostGreen: {fileID: 5422221398447290517, guid: 92b64e131870ae64d8c72385fde7704a, type: 3}
   ghostYellow: {fileID: 8280768687879440350, guid: 6e78f40e1ad51a4478f269bbf75a7394, type: 3}
